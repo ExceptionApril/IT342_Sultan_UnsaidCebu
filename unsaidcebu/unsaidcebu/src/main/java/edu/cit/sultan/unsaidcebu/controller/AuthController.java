@@ -4,7 +4,7 @@ import edu.cit.sultan.unsaidcebu.dto.AuthResponse;
 import edu.cit.sultan.unsaidcebu.dto.LoginRequest;
 import edu.cit.sultan.unsaidcebu.dto.RegisterRequest;
 import edu.cit.sultan.unsaidcebu.service.AuthService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
