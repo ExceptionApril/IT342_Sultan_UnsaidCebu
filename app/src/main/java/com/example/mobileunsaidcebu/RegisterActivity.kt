@@ -31,6 +31,7 @@ class RegisterActivity : AppCompatActivity() {
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val etConfirmPassword = findViewById<EditText>(R.id.etConfirmPassword)
         val btnCreateAccount = findViewById<Button>(R.id.btnCreateAccount)
+        val progressBar = findViewById<android.widget.ProgressBar>(R.id.progressBar)
 
         btnCreateAccount.setOnClickListener {
             val alias = etAlias.text.toString().trim()
@@ -50,6 +51,8 @@ class RegisterActivity : AppCompatActivity() {
 
             lifecycleScope.launch {
                 try {
+                    btnCreateAccount.isEnabled = false
+                    progressBar.visibility = View.VISIBLE
                     Log.d("RegisterActivity", "Attempting sign up for: $email")
                     // Registration with Supabase Auth
                     SupabaseConfig.client.auth.signUpWith(Email) {
@@ -67,6 +70,9 @@ class RegisterActivity : AppCompatActivity() {
                 } catch (e: Exception) {
                     Log.e("RegisterActivity", "Sign up failed", e)
                     Toast.makeText(this@RegisterActivity, "Registration failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                } finally {
+                    btnCreateAccount.isEnabled = true
+                    progressBar.visibility = View.GONE
                 }
             }
         }

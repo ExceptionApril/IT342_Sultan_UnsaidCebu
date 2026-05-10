@@ -42,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnSignIn = findViewById<Button>(R.id.btnSignIn)
+        val progressBar = findViewById<android.widget.ProgressBar>(R.id.progressBar)
 
         btnSignIn.setOnClickListener {
             val email = etEmail.text.toString().trim()
@@ -52,6 +53,8 @@ class LoginActivity : AppCompatActivity() {
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 lifecycleScope.launch {
                     try {
+                        btnSignIn.isEnabled = false
+                        progressBar.visibility = View.VISIBLE
                         Log.d("LoginActivity", "Attempting Supabase sign in...")
                         SupabaseConfig.client.auth.signInWith(Email) {
                             this.email = email
@@ -63,6 +66,9 @@ class LoginActivity : AppCompatActivity() {
                     } catch (e: Exception) {
                         Log.e("LoginActivity", "Sign in failed", e)
                         Toast.makeText(this@LoginActivity, "Login failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                    } finally {
+                        btnSignIn.isEnabled = true
+                        progressBar.visibility = View.GONE
                     }
                 }
             } else {
