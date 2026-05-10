@@ -1,9 +1,9 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-unsaidcebu,edu.cit.sultan.unsaidcebu.features.auth.application,AuthService,0,80,0,4,0,19,0,4,0,2
+unsaidcebu,edu.cit.sultan.unsaidcebu.features.auth.application,AuthService,0,78,0,4,0,19,0,4,0,2
 unsaidcebu,edu.cit.sultan.unsaidcebu.features.auth.application,InvalidCredentialsException,0,4,0,0,0,2,0,1,0,1
 unsaidcebu,edu.cit.sultan.unsaidcebu.features.auth.application,EmailAlreadyRegisteredException,0,4,0,0,0,2,0,1,0,1
 unsaidcebu,edu.cit.sultan.unsaidcebu,UnsaidcebuApplication,5,3,0,0,2,1,1,1,1,1
-unsaidcebu,edu.cit.sultan.unsaidcebu.shared.config,SecurityConfig,0,57,0,0,0,11,0,7,0,7
+unsaidcebu,edu.cit.sultan.unsaidcebu.shared.config,SecurityConfig,0,70,0,0,0,12,0,8,0,8
 unsaidcebu,edu.cit.sultan.unsaidcebu.shared.exception,GlobalExceptionHandler,0,47,0,0,0,9,0,5,0,5
 unsaidcebu,edu.cit.sultan.unsaidcebu.shared.exception,ApiErrorResponse,0,6,0,0,0,1,0,1,0,1
 unsaidcebu,edu.cit.sultan.unsaidcebu.features.auth.api,AuthController,0,17,0,0,0,3,0,3,0,3

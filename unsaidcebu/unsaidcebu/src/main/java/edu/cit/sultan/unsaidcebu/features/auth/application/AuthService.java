@@ -20,7 +20,7 @@ public class AuthService {
     @Transactional
     public AuthResponse register(RegisterRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new EmailAlreadyRegisteredException(request.getEmail());
+            throw new EmailAlreadyRegisteredException();
         }
 
         User user = new User();
