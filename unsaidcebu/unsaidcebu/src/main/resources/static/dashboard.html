@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Unsaid Cebu</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .dashboard-container {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px 20px;
+        }
+        
+        .welcome-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(157, 123, 181, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            text-align: center;
+        }
+        
+        .dashboard-title {
+            font-size: 32px;
+            color: #6B5B7A;
+            margin-bottom: 16px;
+        }
+        
+        .user-info {
+            margin: 32px 0;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 16px;
+        }
+        
+        .user-info p {
+            margin: 8px 0;
+            color: #6B5B7A;
+            font-size: 15px;
+        }
+        
+        .user-info strong {
+            color: #9D7BB5;
+        }
+        
+        .btn-logout {
+            margin-top: 24px;
+            padding: 12px 32px;
+            border: 2px solid #9D7BB5;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #9D7BB5;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-logout:hover {
+            background: #9D7BB5;
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+    </div>
+    
+    <div class="dashboard-container">
+        <div class="icon-circle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#9D7BB5"/>
+            </svg>
+        </div>
+        
+        <div class="welcome-card">
+            <h1 class="dashboard-title">Welcome to Your Journey</h1>
+            <p class="subtitle">Your memories are waiting to be discovered</p>
+            
+            <div class="user-info" id="userInfo">
+                <p><strong>Name:</strong> <span id="userName">-</span></p>
+                <p><strong>Email:</strong> <span id="userEmail">-</span></p>
+                <p><strong>User ID:</strong> <span id="userId">-</span></p>
+            </div>
+            
+            <button class="btn-logout" onclick="logout()">Sign Out</button>
+        </div>
+        
+        <p class="footer-text">Cebu, Philippines - Where memories bloom</p>
+    </div>
+    
+    <script>
+        // Check if user is logged in
+        const userData = localStorage.getItem('user');
+        
+        if (!userData) {
+            window.location.href = 'login.html';
+        } else {
+            const user = JSON.parse(userData);
+            document.getElementById('userName').textContent = user.name || '-';
+            document.getElementById('userEmail').textContent = user.email || '-';
+            document.getElementById('userId').textContent = user.userId || '-';
+        }
+        
+        function logout() {
+            localStorage.removeItem('user');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
