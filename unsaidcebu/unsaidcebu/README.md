@@ -12,6 +12,8 @@
 ✅ Secure Password Storage (BCrypt)
 ✅ Duplicate Email Prevention
 ✅ Input Validation
+✅ Vertical Slice backend structure for the authentication module
+✅ Automated regression tests for authentication flows
 
 ## Database Schema
 
@@ -111,19 +113,27 @@ Authentication API is running
 
 ## How to Run
 
-1. Make sure PostgreSQL database is running and connection details in `application.properties` are correct
+1. Configure the database connection with environment variables:
+   - `DATABASE_URL`
+   - `DATABASE_USERNAME`
+   - `DATABASE_PASSWORD`
 
 2. Build the project:
 ```bash
-mvnw clean install
+sh mvnw clean install
 ```
 
 3. Run the application:
 ```bash
-mvnw spring-boot:run
+sh mvnw spring-boot:run
 ```
 
-4. The API will be available at: `http://localhost:8080`
+4. Run the automated regression tests:
+```bash
+sh mvnw test
+```
+
+5. The API will be available at: `http://localhost:8080`
 
 ## Testing with Postman or cURL
 
@@ -144,22 +154,27 @@ curl -X POST http://localhost:8080/api/auth/login \
 ## Project Structure
 ```
 src/main/java/edu/cit/sultan/unsaidcebu/
-├── config/
-│   └── SecurityConfig.java          # Spring Security configuration
-├── controller/
-│   └── AuthController.java          # REST API endpoints
-├── dto/
-│   ├── RegisterRequest.java         # Registration request DTO
-│   ├── LoginRequest.java            # Login request DTO
-│   └── AuthResponse.java            # Authentication response DTO
-├── entity/
-│   └── User.java                    # User entity/model
-├── exception/
-│   └── GlobalExceptionHandler.java  # Global exception handling
-├── repository/
-│   └── UserRepository.java          # Database operations
-├── service/
-│   └── AuthService.java             # Business logic
+├── features/
+│   └── auth/
+│       ├── api/
+│       │   ├── AuthController.java
+│       │   ├── AuthResponse.java
+│       │   ├── LoginRequest.java
+│       │   └── RegisterRequest.java
+│       ├── application/
+│       │   ├── AuthService.java
+│       │   ├── EmailAlreadyRegisteredException.java
+│       │   └── InvalidCredentialsException.java
+│       ├── domain/
+│       │   └── User.java
+│       └── infrastructure/
+│           └── UserRepository.java
+├── shared/
+│   ├── config/
+│   │   └── SecurityConfig.java
+│   └── exception/
+│       ├── ApiErrorResponse.java
+│       └── GlobalExceptionHandler.java
 └── UnsaidcebuApplication.java       # Main application class
 ```
 
@@ -168,3 +183,4 @@ src/main/java/edu/cit/sultan/unsaidcebu/
 - Database tables are auto-created using JPA (spring.jpa.hibernate.ddl-auto=update)
 - Passwords are never stored in plain text
 - All authentication endpoints are publicly accessible (no authentication required)
+- The regression suite uses an isolated H2 in-memory database via the `test` Spring profile

@@ -1,0 +1,4 @@
+JaCoCo Coverage Summary
+Line Coverage: 48/53 (90.57%)
+Instruction Coverage: 218/229 (95.20%)
+Branch Coverage: 4/4 (100.00%)

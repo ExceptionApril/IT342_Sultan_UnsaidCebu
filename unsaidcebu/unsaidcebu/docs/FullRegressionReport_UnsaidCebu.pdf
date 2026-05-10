@@ -1,0 +1,261 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /ProcSet [/PDF /Text] /Font << /F1 3 0 R >> >>
+endobj
+4 0 obj
+<< /Length 3044 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+40 790 Td (FULL REGRESSION TEST REPORT - UNSAID CEBU) Tj
+0 -14 Td
+40 776 Td () Tj
+0 -14 Td
+40 762 Td (1. PROJECT INFORMATION) Tj
+0 -14 Td
+40 748 Td (• Project Name: Unsaid Cebu Authentication System) Tj
+0 -14 Td
+40 734 Td (• Repository Link: https://github.com/ExceptionApril/IT342_Sultan_UnsaidCebu) Tj
+0 -14 Td
+40 720 Td (• Refactor Branch:) Tj
+0 -14 Td
+40 706 Td (https://github.com/ExceptionApril/IT342_Sultan_UnsaidCebu/tree/copilot/refactor-vertical-) Tj
+0 -14 Td
+40 692 Td (slice-architecture) Tj
+0 -14 Td
+40 678 Td (• Date Executed: 2026-05-10) Tj
+0 -14 Td
+40 664 Td (• Scope: Backend authentication module present in this repository) Tj
+0 -14 Td
+40 650 Td () Tj
+0 -14 Td
+40 636 Td (2. REFACTORING SUMMARY) Tj
+0 -14 Td
+40 622 Td (• Reorganized the backend from a layer-based package structure into a vertical slice) Tj
+0 -14 Td
+40 608 Td (centered on the auth feature.) Tj
+0 -14 Td
+40 594 Td (• Moved shared cross-cutting concerns into shared/config and shared/exception.) Tj
+0 -14 Td
+40 580 Td (• Replaced embedded datasource credentials with environment-based configuration defaults.) Tj
+0 -14 Td
+40 566 Td (• Added isolated test configuration and expanded automated regression coverage for all) Tj
+0 -14 Td
+40 552 Td (implemented backend functional requirements.) Tj
+0 -14 Td
+40 538 Td () Tj
+0 -14 Td
+40 524 Td (3. UPDATED PROJECT STRUCTURE) Tj
+0 -14 Td
+40 510 Td (text) Tj
+0 -14 Td
+40 496 Td (src/main/java/edu/cit/sultan/unsaidcebu/) Tj
+0 -14 Td
+40 482 Td (├── UnsaidcebuApplication.java) Tj
+0 -14 Td
+40 468 Td (├── features/) Tj
+0 -14 Td
+40 454 Td (│   └── auth/) Tj
+0 -14 Td
+40 440 Td (│       ├── api/) Tj
+0 -14 Td
+40 426 Td (│       │   ├── AuthController.java) Tj
+0 -14 Td
+40 412 Td (│       │   ├── AuthResponse.java) Tj
+0 -14 Td
+40 398 Td (│       │   ├── LoginRequest.java) Tj
+0 -14 Td
+40 384 Td (│       │   └── RegisterRequest.java) Tj
+0 -14 Td
+40 370 Td (│       ├── application/) Tj
+0 -14 Td
+40 356 Td (│       │   ├── AuthService.java) Tj
+0 -14 Td
+40 342 Td (│       │   ├── EmailAlreadyRegisteredException.java) Tj
+0 -14 Td
+40 328 Td (│       │   └── InvalidCredentialsException.java) Tj
+0 -14 Td
+40 314 Td (│       ├── domain/) Tj
+0 -14 Td
+40 300 Td (│       │   └── User.java) Tj
+0 -14 Td
+40 286 Td (│       └── infrastructure/) Tj
+0 -14 Td
+40 272 Td (│           └── UserRepository.java) Tj
+0 -14 Td
+40 258 Td (└── shared/) Tj
+0 -14 Td
+40 244 Td (    ├── config/) Tj
+0 -14 Td
+40 230 Td (    │   └── SecurityConfig.java) Tj
+0 -14 Td
+40 216 Td (    └── exception/) Tj
+0 -14 Td
+40 202 Td (        ├── ApiErrorResponse.java) Tj
+0 -14 Td
+40 188 Td (        └── GlobalExceptionHandler.java) Tj
+0 -14 Td
+40 174 Td () Tj
+0 -14 Td
+40 160 Td () Tj
+0 -14 Td
+40 146 Td (4. TEST PLAN DOCUMENTATION) Tj
+0 -14 Td
+40 132 Td (• Primary test plan: [docs/SoftwareTestPlan.md]\(./SoftwareTestPlan.md\)) Tj
+0 -14 Td
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 10 0 R /MediaBox [0 0 612 842] /Resources 2 0 R /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 3180 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+40 790 Td (• Test suite command: sh mvnw test) Tj
+0 -14 Td
+40 776 Td (• Environment: Spring Boot test profile with H2 in-memory database) Tj
+0 -14 Td
+40 762 Td () Tj
+0 -14 Td
+40 748 Td (5. AUTOMATED TEST EVIDENCE) Tj
+0 -14 Td
+40 734 Td (• Maven regression log: docs/evidence/maven-test.log) Tj
+0 -14 Td
+40 720 Td (• JaCoCo coverage summary: docs/evidence/jacoco-summary.txt) Tj
+0 -14 Td
+40 706 Td (• JaCoCo raw report: docs/evidence/jacoco.csv) Tj
+0 -14 Td
+40 692 Td (• Surefire XML/text reports generated locally in target/surefire-reports/) Tj
+0 -14 Td
+40 678 Td () Tj
+0 -14 Td
+40 664 Td (6. REGRESSION TEST RESULTS) Tj
+0 -14 Td
+40 650 Td () Tj
+0 -14 Td
+40 636 Td (| Metric | Result |) Tj
+0 -14 Td
+40 622 Td () Tj
+0 -14 Td
+40 608 Td (| Total automated tests | 7 |) Tj
+0 -14 Td
+40 594 Td (| Passed | 7 |) Tj
+0 -14 Td
+40 580 Td (| Failed | 0 |) Tj
+0 -14 Td
+40 566 Td (| Errors | 0 |) Tj
+0 -14 Td
+40 552 Td (| Line coverage | 90.57% |) Tj
+0 -14 Td
+40 538 Td (| Instruction coverage | 95.20% |) Tj
+0 -14 Td
+40 524 Td (| Branch coverage | 100.00% |) Tj
+0 -14 Td
+40 510 Td () Tj
+0 -14 Td
+40 496 Td (EXECUTED AUTOMATED TESTS) Tj
+0 -14 Td
+40 482 Td (• AuthControllerIntegrationTest.healthEndpointReturnsOk) Tj
+0 -14 Td
+40 468 Td (• AuthControllerIntegrationTest.registerReturnsCreatedForValidRequest) Tj
+0 -14 Td
+40 454 Td (• AuthControllerIntegrationTest.registerReturnsBadRequestForDuplicateEmail) Tj
+0 -14 Td
+40 440 Td (• AuthControllerIntegrationTest.registerReturnsValidationErrorsForInvalidRequest) Tj
+0 -14 Td
+40 426 Td (• AuthControllerIntegrationTest.loginReturnsOkForValidCredentials) Tj
+0 -14 Td
+40 412 Td (• AuthControllerIntegrationTest.loginReturnsUnauthorizedForInvalidCredentials) Tj
+0 -14 Td
+40 398 Td (• UnsaidcebuApplicationTests.contextLoads) Tj
+0 -14 Td
+40 384 Td () Tj
+0 -14 Td
+40 370 Td (7. ISSUES FOUND) Tj
+0 -14 Td
+40 356 Td (1. Pre-existing test instability: the original contextLoads test failed because tests) Tj
+0 -14 Td
+40 342 Td (depended on an external PostgreSQL host that was not reachable from the execution) Tj
+0 -14 Td
+40 328 Td (environment.) Tj
+0 -14 Td
+40 314 Td (2. Regression gap: the project previously had only a single context-load test and no) Tj
+0 -14 Td
+40 300 Td (endpoint-level regression coverage.) Tj
+0 -14 Td
+40 286 Td () Tj
+0 -14 Td
+40 272 Td (8. FIXES APPLIED) Tj
+0 -14 Td
+40 258 Td (1. Switched application datasource settings to environment-variable based configuration with) Tj
+0 -14 Td
+40 244 Td (local defaults.) Tj
+0 -14 Td
+40 230 Td (2. Added a dedicated application-test.properties file that uses H2 for automated tests.) Tj
+0 -14 Td
+40 216 Td (3. Added integration tests for registration, login, duplicate email handling, validation,) Tj
+0 -14 Td
+40 202 Td (and health checks.) Tj
+0 -14 Td
+40 188 Td (4. Added JaCoCo reporting to generate automated coverage evidence.) Tj
+0 -14 Td
+40 174 Td () Tj
+0 -14 Td
+40 160 Td (9. CONCLUSION) Tj
+0 -14 Td
+40 146 Td (The backend authentication module remains functional after the vertical slice refactor. All) Tj
+0 -14 Td
+40 132 Td (implemented backend requirements covered by the repository passed the automated regression) Tj
+0 -14 Td
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 10 0 R /MediaBox [0 0 612 842] /Resources 2 0 R /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 115 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+40 790 Td (suite, and the refactored structure is more modular and maintainable.) Tj
+0 -14 Td
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 10 0 R /MediaBox [0 0 612 842] /Resources 2 0 R /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Type /Pages /Count 3 /Kids [5 0 R 7 0 R 9 0 R] >>
+endobj
+11 0 obj
+<< /Type /Catalog /Pages 10 0 R >>
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000144 00000 n 
+0000003240 00000 n 
+0000003345 00000 n 
+0000006577 00000 n 
+0000006682 00000 n 
+0000006848 00000 n 
+0000006953 00000 n 
+0000007023 00000 n 
+trailer
+<< /Size 11 /Root 11 0 R >>
+startxref
+7074
+%%EOF
