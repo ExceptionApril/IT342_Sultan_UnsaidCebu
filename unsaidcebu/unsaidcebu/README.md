@@ -117,6 +117,7 @@ Authentication API is running
    - `DATABASE_URL`
    - `DATABASE_USERNAME`
    - `DATABASE_PASSWORD`
+   - `ALLOWED_ORIGINS`
 
 2. Build the project:
 ```bash
