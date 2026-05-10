@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Unsaid Cebu</string>
+    <string name="welcome_back">WELCOME BACK</string>
+    <string name="speak_the_unsaid">Speak the unsaid.</string>
+    <string name="login_subtitle">Sign in anonymously. Your identity never leaves your device.</string>
+    <string name="email">Email</string>
+    <string name="email_hint">you@cebu.live</string>
+    <string name="password">Password</string>
+    <string name="password_hint">••••••••</string>
+    <string name="stay_signed_in">Stay signed in</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="new_to_unsaid">New to Unsaid Cebu? </string>
+    <string name="create_account">Create account</string>
+
+    <string name="join_the_city">JOIN THE CITY</string>
+    <string name="pin_your_first_whisper">Pin your first whisper.</string>
+    <string name="register_subtitle">Create an anonymous account. No name, no number, no trace.</string>
+    <string name="display_alias">Display alias (optional)</string>
+    <string name="alias_hint">quiet_rain_07</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="create_my_whisper_account">Create my whisper account</string>
+    <string name="already_a_whisperer">Already a whisperer? </string>
+    <string name="sign_in_link">Sign in</string>
+    <string name="app_tagline">WHISPER TO THE CITY</string>
+</resources>
