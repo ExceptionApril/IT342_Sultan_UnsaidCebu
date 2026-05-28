@@ -13,3 +13,16 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Secrets — never commit
+.env
+**/.env
+!**/.env.example
+
+# Runtime logs
+*.log
+
+# IDE / tooling caches
+.idea/
+app/.idea/
+.claude/

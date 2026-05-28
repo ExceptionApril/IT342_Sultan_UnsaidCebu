@@ -15,6 +15,33 @@
 
 $ErrorActionPreference = "Stop"
 
+# ── 0. Load .env (DB_URL, DB_USERNAME, DB_PASSWORD, JWT_SECRET) ───
+$envFile = Join-Path $PSScriptRoot ".env"
+if (Test-Path $envFile) {
+    Get-Content $envFile | ForEach-Object {
+        $line = $_.Trim()
+        if ($line -and -not $line.StartsWith("#")) {
+            $kv = $line -split "=", 2
+            if ($kv.Length -eq 2) {
+                $k = $kv[0].Trim()
+                $v = $kv[1].Trim().Trim('"').Trim("'")
+                Set-Item -Path "Env:$k" -Value $v
+            }
+        }
+    }
+} else {
+    Write-Host "  [!] .env not found at $envFile" -ForegroundColor Yellow
+    Write-Host "      Copy .env.example -> .env and fill in real values." -ForegroundColor Yellow
+}
+
+$required = @("DB_URL", "DB_USERNAME", "DB_PASSWORD", "JWT_SECRET")
+$missing  = $required | Where-Object { -not (Get-Item "Env:$_" -ErrorAction SilentlyContinue).Value }
+if ($missing.Count -gt 0) {
+    Write-Host "  [X] Missing required env vars: $($missing -join ', ')" -ForegroundColor Red
+    Write-Host "      Set them in .env or your shell, then re-run." -ForegroundColor Red
+    exit 1
+}
+
 # ── 1. Locate JDK 17 ──────────────────────────────────────────────
 $jdkCandidates = @(
     "C:\Users\April John\.jdks\jbr-17.0.14",
