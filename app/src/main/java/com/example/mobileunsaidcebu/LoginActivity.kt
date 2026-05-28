@@ -8,89 +8,80 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
-import android.util.Log
-import android.widget.TextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import io.github.jan.supabase.auth.auth
-import io.github.jan.supabase.auth.providers.builtin.Email
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var session: SessionManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
-        // Check if user is already logged in
-        val session = SupabaseConfig.client.auth.currentSessionOrNull()
-        if (session != null) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+
+        session = SessionManager(this)
+        if (session.isLoggedIn()) {
+            goToFeed()
             return
         }
 
-        Log.d("LoginActivity", "onCreate started")
-        try {
-            setContentView(R.layout.activity_login)
-            Log.d("LoginActivity", "setContentView successful")
-        } catch (e: Exception) {
-            Log.e("LoginActivity", "Error setting content view", e)
-        }
+        setContentView(R.layout.activity_login)
 
-        val etEmail = findViewById<EditText>(R.id.etEmail)
+        val etEmail    = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
-        val btnSignIn = findViewById<Button>(R.id.btnSignIn)
+        val btnSignIn  = findViewById<Button>(R.id.btnSignIn)
 
         btnSignIn.setOnClickListener {
-            val email = etEmail.text.toString().trim()
+            val email    = etEmail.text.toString().trim()
             val password = etPassword.text.toString()
-
-            Log.d("LoginActivity", "Sign In clicked: email=$email")
-
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                lifecycleScope.launch {
-                    try {
-                        Log.d("LoginActivity", "Attempting Supabase sign in...")
-                        SupabaseConfig.client.auth.signInWith(Email) {
-                            this.email = email
-                            this.password = password
-                        }
-                        Log.d("LoginActivity", "Sign in successful!")
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                        finish()
-                    } catch (e: Exception) {
-                        Log.e("LoginActivity", "Sign in failed", e)
-                        Toast.makeText(this@LoginActivity, "Login failed: ${e.message}", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            } else {
+            if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            btnSignIn.isEnabled = false
+            lifecycleScope.launch {
+                try {
+                    val response = ApiClient.getService().login(LoginRequest(email, password))
+                    if (response.isSuccessful) {
+                        val body = response.body()!!
+                        session.saveSession(body.userId!!, body.name ?: "", body.email ?: "", body.token!!)
+                        goToFeed()
+                    } else {
+                        Toast.makeText(this@LoginActivity, "Invalid email or password", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(this@LoginActivity, "Connection error: check backend is running", Toast.LENGTH_LONG).show()
+                } finally {
+                    btnSignIn.isEnabled = true
+                }
             }
         }
 
         val tvCreateAccount = findViewById<TextView>(R.id.tvCreateAccount)
-        val text = getString(R.string.new_to_unsaid) + getString(R.string.create_account)
-        val spannableString = SpannableString(text)
-        
-        val createAccountClick = object : ClickableSpan() {
+        val fullText = getString(R.string.new_to_unsaid) + getString(R.string.create_account)
+        val spannable = SpannableString(fullText)
+        val clickSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
                 startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
             }
-
             override fun updateDrawState(ds: TextPaint) {
                 super.updateDrawState(ds)
                 ds.color = getColor(R.color.primary_purple)
                 ds.isUnderlineText = false
             }
         }
-
-        val start = text.indexOf(getString(R.string.create_account))
-        val end = start + getString(R.string.create_account).length
-        spannableString.setSpan(createAccountClick, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-        tvCreateAccount.text = spannableString
+        val start = fullText.indexOf(getString(R.string.create_account))
+        spannable.setSpan(clickSpan, start, start + getString(R.string.create_account).length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        tvCreateAccount.text = spannable
         tvCreateAccount.movementMethod = LinkMovementMethod.getInstance()
+    }
+
+    private fun goToFeed() {
+        startActivity(Intent(this, FeedActivity::class.java))
+        finish()
     }
 }

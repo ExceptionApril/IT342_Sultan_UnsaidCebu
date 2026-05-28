@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- Close button (top right) -->
+    <ImageButton
+        android:id="@+id/btnDetailClose"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_gravity="end"
+        android:background="@drawable/bg_chip_anon"
+        android:contentDescription="Close"
+        android:src="@drawable/ic_close"
+        android:padding="8dp"/>
+
+    <!-- Post content (large, prominent) -->
+    <TextView
+        android:id="@+id/tvDetailContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:lineSpacingMultiplier="1.55"
+        android:textColor="@color/text_primary"
+        android:textSize="17sp"
+        android:letterSpacing="-0.01"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="18dp"
+        android:background="@color/border_subtle"/>
+
+    <!-- Author chip -->
+    <TextView
+        android:id="@+id/tvDetailAnon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_chip_anon"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp"
+        android:textColor="@color/indigo_700"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.02"/>
+
+    <!-- Stats row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/bg_muted"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="10dp">
+            <TextView
+                android:id="@+id/tvDetailUpvotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/indigo_700"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="LOVES"
+                android:textColor="@color/text_tertiary"
+                android:textSize="9.5sp"
+                android:letterSpacing="0.1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="6dp"
+            android:background="@color/bg_muted"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="10dp">
+            <TextView
+                android:id="@+id/tvDetailDownvotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_secondary"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="DISLIKES"
+                android:textColor="@color/text_tertiary"
+                android:textSize="9.5sp"
+                android:letterSpacing="0.1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/bg_muted"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="10dp">
+            <TextView
+                android:id="@+id/tvDetailFlags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_secondary"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="FLAGS"
+                android:textColor="@color/text_tertiary"
+                android:textSize="9.5sp"
+                android:letterSpacing="0.1"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Action buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDetailLove"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_gradient_button"
+            android:text="Love"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:elevation="4dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDetailDislike"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_marginHorizontal="3dp"
+            android:layout_weight="1"
+            android:background="@color/indigo_100"
+            android:text="Dislike"
+            android:textAllCaps="false"
+            android:textColor="@color/indigo_700"
+            android:textSize="13sp"
+            android:textStyle="bold"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDetailReport"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:background="@color/error_bg"
+            android:text="Report"
+            android:textAllCaps="false"
+            android:textColor="#B91C1C"
+            android:textSize="13sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Base gradient -->
+    <item>
+        <shape>
+            <gradient
+                android:type="linear"
+                android:angle="135"
+                android:startColor="#F5F3FF"
+                android:centerColor="#EDE9FE"
+                android:endColor="#FAF7FF" />
+        </shape>
+    </item>
+    <!-- Top right indigo orb -->
+    <item
+        android:width="320dp"
+        android:height="320dp"
+        android:gravity="top|right"
+        android:right="-100dp"
+        android:top="-120dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="200dp"
+                android:startColor="#55A78BFA"
+                android:endColor="#00A78BFA" />
+        </shape>
+    </item>
+    <!-- Bottom left rose orb -->
+    <item
+        android:width="260dp"
+        android:height="260dp"
+        android:gravity="bottom|left"
+        android:left="-80dp"
+        android:bottom="-100dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="160dp"
+                android:startColor="#33FB7185"
+                android:endColor="#00FB7185" />
+        </shape>
+    </item>
+</layer-list>
