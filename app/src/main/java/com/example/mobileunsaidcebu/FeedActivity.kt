@@ -53,6 +53,8 @@ class FeedActivity : AppCompatActivity() {
     private var hasFirstFix = false
     private var locationCallback: LocationCallback? = null
     private val CEBU = GeoPoint(10.3157, 123.8854)
+    // Anything farther than this from Cebu is treated as a bogus fix and ignored.
+    private val CEBU_REGION_RADIUS_M = 300_000.0  // ~300 km
     private val LOCATION_PERM = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,8 +98,8 @@ class FeedActivity : AppCompatActivity() {
         // (parity with the web map: hue-rotate(210deg) saturate(0.85) brightness(0.98))
         applyMapTint()
 
-        // My location button
-        findViewById<ImageButton>(R.id.btnMyLocation).setOnClickListener {
+        // My location button (FrameLayout container in the layout — cast to View)
+        findViewById<View>(R.id.btnMyLocation).setOnClickListener {
             val loc = userLocation ?: CEBU
             mapView.controller.animateTo(loc)
         }
@@ -231,7 +233,13 @@ class FeedActivity : AppCompatActivity() {
     }
 
     private fun handleNewLocation(lat: Double, lng: Double, accuracy: Float) {
-        val pt = GeoPoint(lat, lng)
+        var pt = GeoPoint(lat, lng)
+        // Guard against implausible fixes (e.g. an emulator's default Mountain View
+        // GPS): if the reported location is far outside the Cebu region, snap the
+        // marker and camera to Cebu so the app always presents a Cebu-centred map.
+        if (pt.distanceToAsDouble(CEBU) > CEBU_REGION_RADIUS_M) {
+            pt = CEBU
+        }
         userLocation = pt
         updateUserMarker(pt)
         if (!hasFirstFix) {

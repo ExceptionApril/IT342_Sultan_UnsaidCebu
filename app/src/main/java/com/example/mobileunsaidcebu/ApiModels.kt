@@ -2,6 +2,20 @@ package com.example.mobileunsaidcebu
 
 import com.google.gson.annotations.SerializedName
 
+// ── API envelope ──────────────────────────────────────────────────────────────
+// The backend wraps auth responses as { success, data, error, timestamp }.
+data class ApiEnvelope<T>(
+    val success: Boolean = false,
+    val data: T? = null,
+    val error: ApiError? = null,
+    val timestamp: String? = null
+)
+
+data class ApiError(
+    val code: String? = null,
+    val message: String? = null
+)
+
 // ── Auth ─────────────────────────────────────────────────────────────────────
 
 data class RegisterRequest(

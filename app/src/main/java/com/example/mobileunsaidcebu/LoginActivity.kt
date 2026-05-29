@@ -46,9 +46,9 @@ class LoginActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 try {
                     val response = ApiClient.getService().login(LoginRequest(email, password))
-                    if (response.isSuccessful) {
-                        val body = response.body()!!
-                        session.saveSession(body.userId!!, body.name ?: "", body.email ?: "", body.token!!)
+                    val auth = response.body()?.data
+                    if (response.isSuccessful && auth?.userId != null && auth.token != null) {
+                        session.saveSession(auth.userId, auth.name ?: "", auth.email ?: "", auth.token)
                         goToFeed()
                     } else {
                         Toast.makeText(this@LoginActivity, "Invalid email or password", Toast.LENGTH_SHORT).show()
